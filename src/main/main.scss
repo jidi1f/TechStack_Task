@@ -1,9 +1,53 @@
+@import "./theme.scss";
+@import "./base-component-styles.scss";
+
+.color-light-blue {
+    color: $light-blue;
+}
+
+.bg-light-blue {
+    background-color: $light-blue;
+}
+
+.bg-light-red {
+    background-color: $light-red;
+}
+
+.bg-deep-blue {
+    background-color: $deep-blue;
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;    
+}
+
+ul{
+    list-style: none;
+    padding: 0;
+  }
+
 .container{
-    background-color: gray ;  
+    position: relative;
+    max-width: 976px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px 20px;
+    background-color: #f5f5f5 ;   
 }
 
 .outer-container{
     width: 100%;
     min-width: 358px;
     position:relative;
+    background-color: #f5f5f5 ;
+}
+
+.header-contanier{
+    max-width: 976px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: start;
 }

@@ -1,19 +1,12 @@
 import Cart from '~p/cart/';
-
 import Page404 from '~p/error404';
-import Post from '~p/post';
+
 
 let routes = [
     {
         name: "home",
         url:'/',
         component: Cart,
-        exact: true
-    },
-    {
-        name: 'blogPost',
-        url: '/news/:url',
-        component: Post,
         exact: true
     },
     {

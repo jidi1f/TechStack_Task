@@ -3,40 +3,43 @@ import React from 'react';
 import cartModel from '~s/cart.js';
 import {observer} from 'mobx-react';
 import styles from './cart.module.scss';
-
+import RentField from "~c/createRent";
+import CurrentRentField from "~c/currentRent";
+import AvaliableRentField from "~c/avaliableRent";
 import {routesMap} from '~/routes';
 import { Link } from 'react-router-dom';
 
 @observer class Cart extends React.Component{
 
-
+  
  render  (){
     
-    let productsRows = cartModel.products.map((product, i) => {
+    // let productsRows = cartModel.products.map((product, i) => {
         
-        return (
-            <tr key={product.id}>
-                <td>{product.title}</td>
-                <td>{product.price}</td>
-                <td>
+    //     return (
+    //         <tr key={product.id}>
+    //             <td>{product.title}</td>
+    //             <td>{product.price}</td>
+    //             <td>
                   
-                </td>
-                <td>{product.price * product.current}</td>
-                <td><button onClick={() => cartModel.delete(i)}>Delete</button></td>
-            </tr>
-        );
-    });
+    //             </td>
+    //             <td>{product.price * product.current}</td>
+    //             <td><button onClick={() => cartModel.delete(i)}>Delete</button></td>
+    //         </tr>
+    //     );
+    // });
    
 
    
 
         return (
             <div className="container">
-                
-                {showForm(productsRows)}
-                
-                <hr/>
-                 {/* <Link to={routesMap.order} className="btn btn-primary">Send</Link> */}
+                <h2>Create new rent</h2>
+                <RentField></RentField>
+                <h2>Your rent</h2>
+                <CurrentRentField></CurrentRentField>
+                <h2>Avaliable bicycles</h2>
+                <AvaliableRentField></AvaliableRentField>
             </div>
        )
 
@@ -50,23 +53,8 @@ function showForm(productsRows){
     return (
         <div>
               
-              <h2>Cart</h2>
-              <table className="table table-bordered">
-                 <thead>   
-                    <tr>
-                        <td>Title</td>
-                        <td>Price</td>
-                        <td>Count</td>
-                        <td>Total</td>
-                    </tr>
-                  </thead>
-                  <tbody>
-                  {productsRows}
-                 </tbody>
-                
-              </table>
-              {cartModel.total}
-              <br/>
+              <h3>Create new rent</h3>
+              <div></div>
               <button>Send</button>
         </div>
         )

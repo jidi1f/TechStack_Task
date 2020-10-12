@@ -1,0 +1,34 @@
+.btn {
+    padding: 16px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    border-radius: 6px;
+    min-width: 124px;
+    cursor: pointer;
+    color: white;
+    max-height: 46px;
+    margin-left:20px;
+    &:hover {
+       opacity: 0.8; 
+    }
+}
+
+input{
+    display:block;
+    height: 46px;
+    width: 100%;
+    outline: none;
+    color: black;
+    text-align: left;  
+    font-size: 18px;
+}
+
+input::placeholder {color:#aeaeae;text-align: center;}
+
+select{
+    width: 100%;
+    height: 46px;
+    font-size: 16px;
+}

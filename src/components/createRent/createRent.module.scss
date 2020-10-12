@@ -1,0 +1,30 @@
+.rental-field-container{
+    width: 100%;
+    padding: 20px 30px 30px 30px; 
+    display:flex;
+    background-color: #e9eaef;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    .input-container{
+        display: flex;
+        flex-direction: column;
+        margin-right: 20px;
+        width: 100%;
+        max-width: 280px;
+    }
+    
+}
+
+.last-child{
+    min-width: 140px;
+    margin-right: 20px;
+}
+
+.max-width280{
+  max-width: 280px;
+}
+.max-width140{
+  max-width: 140px;
+}
+
