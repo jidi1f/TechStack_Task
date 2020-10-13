@@ -19,5 +19,14 @@
     }
     .button-contanier{
         display: flex;
+        align-items:center;
+        .hide-input{
+            width: 50px;
+            height: 25px;
+        }
+        .hide-input-container{
+            display:flex;
+            align-items: center;
+        }
     }
 }

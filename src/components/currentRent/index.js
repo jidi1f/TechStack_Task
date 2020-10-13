@@ -9,16 +9,21 @@ import store from  '~s/cart';
     render  (){
         
         let productsRows = store.products.map((product, i) => { 
-            console.log(product.rentflag);
+            let discPrice = product.price;
+            if(product.discount){
+                discPrice = (product.price/2) + '!';
+            }
+           
             if(product.rentflag)
             return(
                 <div className={styles['current-rent-element']} key={product.b_id}>
                     <ul>
                         <li>{product.name+" / "}</li>
                         <li>{product.type + " / "}</li>
-                        <li>{product.price + "$"}</li>
+                        <li>{discPrice + "$"}</li>
                     </ul>
-                    <div className="btn bg-light-red" onClick={() => store.onRent(product,i)}>cansel rent</div>
+                    <div className="btn bg-light-red" onClick={() => {store.onRent(product,i,false)}
+                    }>cansel rent</div>
             </div> 
             )
         });
@@ -26,10 +31,11 @@ import store from  '~s/cart';
         return(
         
            <div className={styles['current-rent-container']}>
+                   
+                {productsRows}
 
-                   {productsRows}
-               
-            </div>
+                   
+           </div>
         
         )
     }

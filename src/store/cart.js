@@ -1,11 +1,12 @@
 import {observable, computed, action, toJS} from 'mobx';
 
 class Bike{
-    constructor(name, type, price, flag) {
+    constructor(name, type, price, flag, discount) {
           this.name = name;
           this.type = type;
           this.price = price;
           this.flag = flag;
+          this.discount = discount;
         }
 }
 
@@ -16,8 +17,11 @@ class Cart{
     //     return this.products.reduce((t,pr) => t + pr.price * pr.current, 0); 
     // }
 
-    @action async onRent(obj,i){
-        let tmp = null;
+    @action async onRent(obj,i,flagDiscount){
+        if(flagDiscount){
+            obj.discount = true;
+        }
+        else obj.discount = false;
         try {
             const body = obj;
             const response = await fetch(`http://localhost:5000/bikes/${obj.b_id}`,{
@@ -26,6 +30,7 @@ class Cart{
                 body: JSON.stringify(body)
             });
             this.products[i].rentflag = !obj.rentflag;
+            
         }
         catch (err){
             console.error(err.message);
@@ -36,8 +41,8 @@ class Cart{
 
     }
 
-    @action async add(name,type,price,flag){
-        let tmp = new Bike(name, type,price,flag);
+    @action async add(name,type,price,flag,discount){
+        let tmp = new Bike(name, type,price,flag,discount);
         try {
             const body = tmp;
             const response = await fetch("http://localhost:5000/bikes",{
@@ -47,7 +52,7 @@ class Cart{
             });
             tmp = await response.json();
             this.products.push(tmp)
-            console.log(this.products);
+            
         }
         catch (err){
             console.error(err.message);
@@ -55,13 +60,13 @@ class Cart{
     } 
 
     @action async delete(id,i){
-        console.log(id);
+        
         try {
             const deleteResponse = await fetch(`http://localhost:5000/bikes/${id}`,{
                 method: 'DELETE'
             });
             this.products.splice(i,1);
-            console.log(this.products);
+           
         }
         catch (err){
             console.error(err.message);

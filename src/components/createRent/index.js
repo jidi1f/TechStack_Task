@@ -12,7 +12,7 @@ import store from '~s/cart.js';
     
 
     CreateRent = () => {
-        store.add(this.inputName.current.value,this.selectVal.value,this.inputPrice.current.value, false);
+        store.add(this.inputName.current.value,this.selectVal.value,this.inputPrice.current.value, false, false);
     }
     
     
