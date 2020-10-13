@@ -6,33 +6,16 @@ import styles from './cart.module.scss';
 import RentField from "~c/createRent";
 import CurrentRentField from "~c/currentRent";
 import AvaliableRentField from "~c/avaliableRent";
-import {routesMap} from '~/routes';
-import { Link } from 'react-router-dom';
+import store from '~s/cart.js';
 
 @observer class Cart extends React.Component{
 
   
  render  (){
+
+    store.getProducts();
     
-    // let productsRows = cartModel.products.map((product, i) => {
-        
-    //     return (
-    //         <tr key={product.id}>
-    //             <td>{product.title}</td>
-    //             <td>{product.price}</td>
-    //             <td>
-                  
-    //             </td>
-    //             <td>{product.price * product.current}</td>
-    //             <td><button onClick={() => cartModel.delete(i)}>Delete</button></td>
-    //         </tr>
-    //     );
-    // });
-   
-
-   
-
-        return (
+    return (
             <div className="container">
                 <h2>Create new rent</h2>
                 <RentField></RentField>

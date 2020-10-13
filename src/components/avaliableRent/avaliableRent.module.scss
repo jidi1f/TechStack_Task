@@ -13,6 +13,9 @@
     }   
     ul{
         display: flex;
+        li{
+            margin-left:10px;
+        }
     }
     .button-contanier{
         display: flex;

@@ -1,32 +1,84 @@
-import {observable, computed, action} from 'mobx';
-import { create } from 'domain';
+import {observable, computed, action, toJS} from 'mobx';
 
 class Bike{
-    constructor(name, type, price) {
+    constructor(name, type, price, flag) {
           this.name = name;
           this.type = type;
           this.price = price;
+          this.flag = flag;
         }
 }
 
 class Cart{
     @observable products = [];
 
-    @computed get total(){
-        return this.products.reduce((t,pr) => t + pr.price * pr.current, 0); 
+    // @computed get total(){
+    //     return this.products.reduce((t,pr) => t + pr.price * pr.current, 0); 
+    // }
+
+    @action async onRent(obj,i){
+        let tmp = null;
+        try {
+            const body = obj;
+            const response = await fetch(`http://localhost:5000/bikes/${obj.b_id}`,{
+                method: "PUT",
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            });
+            this.products[i].rentflag = !obj.rentflag;
+        }
+        catch (err){
+            console.error(err.message);
+        }
     }
 
-    @action change(i,cnt){
-        this.products[i].current = cnt;
+    @action toCurRent(){
+
     }
 
-    @action add(name,type,price){
-        let tmp = new Bike(name,type,price)
-        this.products.push(tmp);
+    @action async add(name,type,price,flag){
+        let tmp = new Bike(name, type,price,flag);
+        try {
+            const body = tmp;
+            const response = await fetch("http://localhost:5000/bikes",{
+                method: "POST",
+                headers: { "Content-Type": "application/json"},
+                body: JSON.stringify(body)
+            });
+            tmp = await response.json();
+            this.products.push(tmp)
+            console.log(this.products);
+        }
+        catch (err){
+            console.error(err.message);
+        }
     } 
 
-    @action delete(i){
-        this.products.splice(i,1);
+    @action async delete(id,i){
+        console.log(id);
+        try {
+            const deleteResponse = await fetch(`http://localhost:5000/bikes/${id}`,{
+                method: 'DELETE'
+            });
+            this.products.splice(i,1);
+            console.log(this.products);
+        }
+        catch (err){
+            console.error(err.message);
+        }
+    }
+
+    @action async getProducts(){
+        try {
+            const response = await fetch("http://localhost:5000/bikes");
+            let products = await response.json();
+            if(products) {
+                this.products = products
+            }
+        }
+        catch (err){
+            console.error(err.message);
+        }
     }
 }
 
@@ -34,22 +86,3 @@ export default new Cart()
 
 
 
-function getProduct(){
-    return [
-        {
-            id: 100,
-            title: 'Iphone 200',
-            price: 12000,
-            rest: 10,
-            current: 1
-        }
-        ,
-        {
-            id: 101,
-            title: 'Samsung AAZ8',
-            price: 22000,
-            rest: 5,
-            current: 1
-        }
-    ]
-}
