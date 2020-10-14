@@ -14,7 +14,7 @@ import store from '~s/cart.js';
       let input = e.target.parentNode.parentNode.children[0].children[1];
       let message = e.target.parentNode.parentNode.children[0].children[0].children[1];
       let pattern = /^(\d*\.\d+)|([1-9]\d*)$/g;
-      console.log(message);
+      
       if(pattern.test(input.value)){
         
         message.className = "hide";
