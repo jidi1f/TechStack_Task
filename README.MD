@@ -1,3 +1,7 @@
+
+База Данных: PostgreSQL;
+BackEnd:
+FrontEnd: React with mobx;
 Инструкция по запуску:
 
 Для запуска сервера на express и для его авто обновления я использовал nodemon (скрипт npm run serve)
