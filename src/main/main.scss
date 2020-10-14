@@ -1,5 +1,6 @@
 @import "./theme.scss";
 @import "./base-component-styles.scss";
+@import "./media.scss";
 
 .color-light-blue {
     color: $light-blue;
@@ -32,6 +33,10 @@ ul{
     padding: 0;
   }
 
+h2 {
+    margin-left:10px;
+}
+
 .container{
     position: relative;
     max-width: 976px;
@@ -46,6 +51,7 @@ ul{
     min-width: 358px;
     position:relative;
     background-color: #f5f5f5 ;
+    padding-top: 75px;
 }
 
 .header-contanier{
@@ -54,4 +60,8 @@ ul{
     margin: 0 auto;
     display: flex;
     justify-content: start;
+}
+
+.h-contanier{
+    display:flex;  
 }

@@ -1,5 +1,6 @@
 .current-rent-container{
     width: 100%;
+    min-height: 225px;
     display: flex;
     flex-direction: column;
     .current-rent-element{
@@ -15,6 +16,24 @@
         display: flex;
         li{
             margin-left:10px;
+        }
+    }
+}
+
+
+@media screen and (max-width: 680px){
+    .current-rent-element{
+        flex-direction: column;
+        ul{
+            margin-bottom: 10px;
+        }
+    }
+}
+
+@media screen and (max-width: 400px){
+    .current-rent-container{
+        .current-rent-element{ 
+            padding: 20px 15px 30px 15px;
         }
     }
 }

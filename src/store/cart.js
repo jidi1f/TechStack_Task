@@ -1,12 +1,13 @@
 import {observable, computed, action, toJS} from 'mobx';
 
 class Bike{
-    constructor(name, type, price, flag, discount) {
+    constructor(name, type, price, flag, discount, renttime) {
           this.name = name;
           this.type = type;
           this.price = price;
           this.flag = flag;
           this.discount = discount;
+          this.renttime = renttime;
         }
 }
 
@@ -17,11 +18,13 @@ class Cart{
     //     return this.products.reduce((t,pr) => t + pr.price * pr.current, 0); 
     // }
 
-    @action async onRent(obj,i,flagDiscount){
+    @action async onRent(obj,i,flagDiscount,renttime){
         if(flagDiscount){
             obj.discount = true;
         }
         else obj.discount = false;
+        obj.renttime = renttime;
+        console.log(obj.renttime);
         try {
             const body = obj;
             const response = await fetch(`http://localhost:5000/bikes/${obj.b_id}`,{
@@ -30,6 +33,7 @@ class Cart{
                 body: JSON.stringify(body)
             });
             this.products[i].rentflag = !obj.rentflag;
+            this.products[i].renttime = obj.renttime;
             
         }
         catch (err){
@@ -37,12 +41,9 @@ class Cart{
         }
     }
 
-    @action toCurRent(){
-
-    }
-
-    @action async add(name,type,price,flag,discount){
-        let tmp = new Bike(name, type,price,flag,discount);
+    @action async add(name,type,price,flag,discount,renttime){
+        let tmp = new Bike(name, type,price,flag,discount,renttime);
+        console.log(tmp.renttime);
         try {
             const body = tmp;
             const response = await fetch("http://localhost:5000/bikes",{
@@ -78,7 +79,8 @@ class Cart{
             const response = await fetch("http://localhost:5000/bikes");
             let products = await response.json();
             if(products) {
-                this.products = products
+                this.products = products;
+                console.log(this.products);
             }
         }
         catch (err){

@@ -1,5 +1,6 @@
 .avaliable-rent-container{
     width: 100%;
+    min-height: 225px;
     display: flex;
     flex-direction: column;
     .avaliable-rent-element{
@@ -17,16 +18,51 @@
             margin-left:10px;
         }
     }
-    .button-contanier{
+    .functional-container{
         display: flex;
         align-items:center;
         .hide-input{
             width: 50px;
             height: 25px;
+            margin: 10px 10px;
         }
         .hide-input-container{
             display:flex;
             align-items: center;
+            .p-wrapper{
+                display:flex;
+                flex-direction: column;
+            }
+        }
+        p{
+            margin: 5px 5px;
+        }
+        .btn-container {
+            display: flex;
+            align-items:center;
+            flex-direction: row;
         }
     }
 }
+
+@media screen and (max-width: 1000px){
+    .functional-container{
+        flex-direction: column-reverse;
+    }
+}
+
+@media screen and (max-width: 680px){
+    .avaliable-rent-element{
+        flex-direction: column;
+        ul{
+            margin-bottom: 10px;
+        }
+    }
+}
+
+// .test {
+//     width: 16px;
+//     height: 16px;
+//     mask: url("~@/img/money.svg") no-repeat center;
+//     mask-size: 16px;
+// }

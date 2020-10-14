@@ -1,11 +1,15 @@
-.rental-field-container{
+.outer-rental-field-container{
     width: 100%;
     padding: 20px 30px 30px 30px; 
     display:flex;
     background-color: #e9eaef;
-    align-items: flex-end;
+    flex-direction: column;
     justify-content: space-between;
     margin-bottom: 60px;
+    .rental-field-container{
+      display:flex;
+      align-items: flex-end;    
+    }
     .input-container{
         display: flex;
         flex-direction: column;
@@ -13,18 +17,42 @@
         width: 100%;
         max-width: 280px;
     }
-    
+    p{
+      text-align: end;
+      margin: 5px 5px 0 0;
+      color:red;
+    }
+   
 }
 
 .last-child{
     min-width: 140px;
     margin-right: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .max-width280{
   max-width: 280px;
 }
-.max-width140{
-  max-width: 140px;
-}
 
+@media screen and (max-width: 720px){
+  .rental-field-container{
+    flex-direction: column;
+    align-items:center !important;
+    .last-child{
+      width: 100%;
+      max-width: 280px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    label{
+      text-align: center;
+    }
+  }
+  .outer-rental-field-container{
+    p{
+      text-align: center;
+    }
+  }
+}

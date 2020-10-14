@@ -18,7 +18,7 @@ import styles from './app.module.scss';
         <Router>
          <div className='outer-container'>
                <header>
-                  <div className="header-contanier">
+                  <div className= 'header-contanier'>
                      <h1>Awesome Bike Rental</h1>
                   </div>
                </header>

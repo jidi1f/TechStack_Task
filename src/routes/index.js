@@ -1,5 +1,5 @@
 import Cart from '~p/cart/';
-import Page404 from '~p/error404';
+
 
 
 let routes = [
@@ -8,13 +8,7 @@ let routes = [
         url:'/',
         component: Cart,
         exact: true
-    },
-    {
-        url: '**',
-        component: Page404
-    }
-    
-
+    } 
 ]
 
 let routesMap = {};

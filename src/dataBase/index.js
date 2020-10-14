@@ -11,8 +11,8 @@ app.post("/bikes", async(req,res) =>{
        
     const bikeObj  = req.body;
     const newTodo = await pool.query(
-        "INSERT INTO bikes (name, type, price, rentFlag) VALUES($1,$2,$3,$4) RETURNING *",
-         [bikeObj.name,bikeObj.type,bikeObj.price,bikeObj.flag]
+        "INSERT INTO bikes (name, type, price, rentFlag, discount, renttime) VALUES($1,$2,$3,$4,$5,$6) RETURNING *",
+         [bikeObj.name,bikeObj.type,bikeObj.price,bikeObj.flag,bikeObj.discount,bikeObj.renttime]
     )
 
     res.json(newTodo.rows[0]);
@@ -48,8 +48,8 @@ app.get("/bikes", async(req,res) =>{
     try {
         const { id } = req.params;
         const bikeObj  = req.body;
-        const updateBike = await pool.query("UPDATE bikes SET rentflag = $1 WHERE b_id = $2",
-        [!bikeObj.rentflag, id]);
+        const updateBike = await pool.query("UPDATE bikes SET rentflag = $1, discount = $2, renttime = $3  WHERE b_id = $4",
+        [!bikeObj.rentflag,bikeObj.discount,bikeObj.renttime, id]);
         
         res.json("bike was updated");
        } catch (err) {
