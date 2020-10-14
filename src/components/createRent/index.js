@@ -13,7 +13,7 @@ import store from '~s/cart.js';
 
     CreateRent = () => {
         let priceCheck = /^(\d*\.\d+)|([1-9]\d*)$/g.test(this.inputPrice.current.value );
-        let nameCheck = /^[a-zA-Z0-9_ ]+$/g.test(this.inputName.current.value);
+        let nameCheck = /^[a-zA-Z0-9_ ]+\S$/g.test(this.inputName.current.value);
         console.log(priceCheck);
         if(priceCheck && nameCheck){
             store.add(this.inputName.current.value,this.selectVal.value,this.inputPrice.current.value, false, false, 0);
